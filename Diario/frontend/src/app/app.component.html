@@ -1,0 +1,66 @@
+<div class="container mt-4" style="background-color: #f8f9fa; padding: 20px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+  <header class="text-center mb-4" style="color: #007bff;">
+    <h1>🎵 Diario de Práctica Musical 🎶</h1>
+    <p class="text-muted">Lleva un control organizado de tus sesiones de práctica</p>
+  </header>
+
+  <!-- Botón para alternar entre sesiones y objetivos -->
+  <div class="text-center mb-4">
+    <button (click)="toggleObjetivos()" class="btn btn-primary">
+      {{ mostrarObjetivos ? 'Volver a Sesiones' : 'Añadir Objetivos' }}
+    </button>
+  </div>
+
+  <!-- Vista de sesiones -->
+  <div *ngIf="!mostrarObjetivos">
+    <section>
+      <h2 class="text-primary mb-3">Registrar nueva sesión</h2>
+      <div style="border: 1px solid #007bff; padding: 15px; border-radius: 8px; background-color: #ffffff;">
+        <app-session-form (addSesion)="addSesion($event)"></app-session-form>
+      </div>
+    </section>
+
+    <section class="mt-5">
+      <h2 class="text-primary mb-3">Historial de sesiones</h2>
+      <div style="border: 1px solid #007bff; padding: 15px; border-radius: 8px; background-color: #ffffff;">
+        <app-session-list [sesiones]="sesiones"></app-session-list>
+      </div>
+    </section>
+  </div>
+
+  <!-- Vista de objetivos -->
+  <div *ngIf="mostrarObjetivos">
+    <section>
+      <h2 class="text-primary mb-3">Lista de Objetivos</h2>
+      <form (submit)="addObjetivo(newGoal.value); newGoal.value = ''; $event.preventDefault()">
+        <input #newGoal type="text" placeholder="Añadir objetivo" class="form-control mb-3" required />
+        <button type="submit" class="btn btn-success">Añadir</button>
+      </form>
+    </section>
+
+    <section class="mt-4">
+      <ul class="list-group">
+        <li *ngFor="let objetivo of objetivos" class="list-group-item d-flex align-items-center">
+          <input
+            type="checkbox"
+            class="form-check-input me-3"
+            [checked]="objetivo.completed"
+            (click)="toggleCheck(objetivo)"
+          />
+          {{ objetivo.name }}
+        </li>
+      </ul>
+    </section>
+
+    <section class="mt-4">
+      <p>Progreso: {{ progreso }}%</p>
+      <div class="progress" style="height: 20px;">
+        <div
+          class="progress-bar progress-bar-striped progress-bar-animated"
+          [style.width]="progreso + '%'"
+          role="progressbar"
+        ></div>
+      </div>
+    </section>
+  </div>
+</div>

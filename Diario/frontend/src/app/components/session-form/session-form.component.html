@@ -1,0 +1,15 @@
+<form (ngSubmit)="submitForm()"> <!-- Llama al método submitForm al enviar el formulario -->
+  <div>
+    <label for="duracion">Duración:</label>
+    <input [(ngModel)]="duracion" id="duracion" name="duracion" type="number" /> <!-- Enlaza la duración al modelo -->
+  </div>
+  <div>
+    <label for="piezas_tecnicas">Piezas Técnicas:</label>
+    <input [(ngModel)]="piezas_tecnicas" id="piezas_tecnicas" name="piezas_tecnicas" type="text" /> <!-- Enlaza piezas técnicas -->
+  </div>
+  <div>
+    <label for="notas">Notas:</label>
+    <textarea [(ngModel)]="notas" id="notas" name="notas"></textarea> <!-- Enlaza notas -->
+  </div>
+  <button type="submit">Agregar Sesión</button> <!-- Botón para enviar el formulario -->
+</form>

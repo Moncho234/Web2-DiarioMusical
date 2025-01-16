@@ -1,0 +1,8 @@
+<ul class="list-group"> <!-- Lista estilizada con clases de Bootstrap -->
+  <li class="list-group-item" *ngFor="let sesion of sesiones"> <!-- Itera sobre las sesiones y genera un elemento por cada una -->
+    <strong>Duración:</strong> {{ sesion.duracion }} min<br /> <!-- Muestra la duración -->
+    <strong>Piezas Técnicas:</strong> {{ sesion.piezas_tecnicas || 'N/A' }}<br /> <!-- Muestra las piezas técnicas o 'N/A' si no hay -->
+    <strong>Notas:</strong> {{ sesion.notas || 'N/A' }}<br /> <!-- Muestra las notas o 'N/A' si no hay -->
+    <small><strong>Fecha:</strong> {{ sesion.fecha }}</small> <!-- Muestra la fecha de la sesión -->
+  </li>
+</ul>
